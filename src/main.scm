@@ -20,4 +20,4 @@ test = ->
 (define (main)
  (lexer input))
 
-(map (lambda (x) (print (format x "~@C"))) (main))
+(print (main))

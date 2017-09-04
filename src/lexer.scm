@@ -10,10 +10,10 @@
    (map make-token interim-tokens))))
 
 (define (make-token val)
- ;(if (char? (car val))
- ; (print (char=? (car val) #\space)))
  (if (list? val)
-   (list->string val)))
+   (let ((str (list->string val)))
+    (check-reserved str))
+   val))
 
 (define (create-interim-tokens acc x)
  (if (char-whitespace? x)
@@ -27,3 +27,11 @@
    ("=" . "assign")
    (">" . "gt")
    ("<" . "lt")))
+
+(define (check-reserved str)
+ (let ((filter-func (lambda (res)
+                      (string=? str (car res)))))
+  (let ((res (filter filter-func reserved)))
+   (if (> (length res) 0)
+    (cdar res)
+    str))))
