@@ -2,7 +2,7 @@
 
 (declare (unit lexer))
 
-(use srfi-1 srfi-13 data-structures)
+(use srfi-1 srfi-13)
 
 (define (lexer str-input)
  (let ((input (string->list str-input)))
